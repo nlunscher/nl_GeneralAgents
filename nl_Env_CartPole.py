@@ -79,13 +79,12 @@ class nl_Env_CartPole:
                 val_agent_steps[ep] = avg_val_steps
 
                 print ep, datetime.now() - start_time, "Average", avg_val_steps
-
-                plt.close()
-                plt.plot(range(0, ep*watch_interval+1, watch_interval), val_agent_steps[:ep+1],
-                    range(0, ep*watch_interval, watch_interval), train_agent_steps[:ep])
-                plt.show(block=False)
             else:
                 val_agent_steps[ep] = val_agent_steps[ep-1]
+            plt.close()
+            plt.plot(range(0, ep*watch_interval+1, watch_interval), val_agent_steps[:ep+1],
+                     range(0, ep*watch_interval, watch_interval), train_agent_steps[:ep])
+            plt.show(block=False)
 
             observation = self.env.reset()
             for step in range(self.MAX_ENV_STEPS):
